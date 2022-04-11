@@ -65,4 +65,23 @@ class ProductHandlerTest extends TestCase
 
         $this->assertEquals(143, $totalPrice);
     }
+
+    public function testGetTotalPriceV2(){
+        $this->assertEquals(143, ProductHandler::getTotalPrice($this->products));
+    }
+
+    public function testGetDesertAndSortDesByPrice(){
+        $ret = ProductHandler::getDesertAndSortDesByPrice($this->products);
+
+        # 1. The result array should have 2 items
+        $this->assertEquals(2, count($ret));
+
+        # 2. The first item to be the one we want(id==5)
+        $this->assertEquals(5, $ret[0]['id']);
+    }
+
+    public function testDate2Timestamp(){
+        $ret = ProductHandler::date2Timestamp($this->products);
+        print_r($ret);
+    } // testDate2Timestamp()
 }
